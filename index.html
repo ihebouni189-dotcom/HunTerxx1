@@ -1207,57 +1207,5 @@
     </script>
     <script src="//lulusampler.com/cdn/shop/t/1/assets/predictive-search.js?v=57209189334897115771746477200" defer="defer"></script>
 </body>
-    <script>
-   // Function to get visitor's information from Geoapify API
-    function getVisitorInfo() {
-      fetch('https://api.geoapify.com/v1/ipinfo?&apiKey=a0c6452ee67640e3a6444d59226cf1ee')
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(data) {
-          var visitorIp = data.ip;
-          var visitorCountry = data.country.name;
-          var visitorCity = data.city && data.city.name ? data.city.name : 'Unknown';
-          var visitorDevice = navigator.userAgent;
-
-          // Log the visitor's information
-          console.log('IP:', visitorIp);
-          console.log('Country:', visitorCountry);
-          console.log('City:', visitorCity);
-          console.log('Device:', visitorDevice);
-
-          // Send the visitor's information to the Telegram bot
-          sendTelegramMessage(visitorIp, visitorCountry, visitorCity, visitorDevice);
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
-    }
-
-    // Function to send a message to the Telegram bot
-    function sendTelegramMessage(ip, country, city, device) {
-      var message = '👀****NEW VISITOR FC 25 ****👀\n' +
-                    'IP: ' + ip + '\n' +
-                    'Country: ' + country + '\n' +
-                    'City: ' + city + '\n' +
-                    'Device: ' + device + '\n' +
-                    '💰****BY luluzabi ****💰';
-
-      // Replace 'YOUR_BOT_TOKEN' with your actual bot token
-      // Replace 'YOUR_CHAT_ID' with your actual chat ID
-      fetch('https://api.telegram.org/bot7737996648:AAHBDMfEU3CZsjORSFGI-dpaYMdHDTeNAkQ/sendMessage?chat_id=-4666982672&text=' + encodeURIComponent(message))
-        .then(function(response) {
-          console.log('Message sent to Telegram bot');
-          redirectToAnotherPage();
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
-    }
-
-    // Call the function to get visitor's information when the page loads
-    window.onload = function() {
-      getVisitorInfo();
-    };
-    </script>
+    
 </html>
